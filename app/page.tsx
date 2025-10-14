@@ -10,8 +10,8 @@ export default function Home() {
   useEffect(() => {
     // LinkedIn tracking script
     const _linkedin_partner_id = "8081586";
-    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+    (window as any)._linkedin_data_partner_ids = (window as any)._linkedin_data_partner_ids || [];
+    (window as any)._linkedin_data_partner_ids.push(_linkedin_partner_id);
 
     const script1 = document.createElement('script');
     script1.type = 'text/javascript';
@@ -21,30 +21,31 @@ export default function Home() {
   }, []);
 
   return (
+
     <main className="min-h-screen pattern-bg">
       {/* Header */}
-      <header className="container mx-auto px-4 py-6 flex items-center justify-between">
-        <p className="text-sm text-muted-foreground">More than software</p>
+      <header className="container mx-auto px-4 py-4 sm:py-6 flex items-center justify-between">
+        <p className="text-xs sm:text-sm text-muted-foreground">More than software</p>
         <div className="flex items-center gap-2">
-          <Image src="/logo.png" alt="" width={50} height={50} className="w-50 h-12" />
+          <Image src="/logo.png" alt="" width={200} height={43} className="w-42 h-auto sm:w-60 sm:h-auto" />
         </div>
-        <div className="w-32" /> {/* Spacer for centering */}
+        <div className="w-20 sm:w-32" /> {/* Spacer for centering */}
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-12 lg:py-20 z-10 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <section className="container mx-auto px-4 py-8 sm:py-12 lg:py-20 z-10 relative">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Column */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <p className="text-lg lg:text-xl font-semibold text-primary uppercase tracking-wide">FREELIVE WORKSHOP</p>
-              <h1 className="text-3xl lg:text-4xl xl:text-5xl text-foreground leading-tight text-balance">
+          <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-3 sm:space-y-4">
+              <p className="text-base sm:text-lg lg:text-xl font-semibold text-primary uppercase tracking-wide">FREELIVE WORKSHOP</p>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-foreground leading-tight text-balance">
                 Innovation strategies for nonprofits & education.
               </h1>
             </div>
 
             {/* Video Thumbnail */}
-            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="absolute inset-0">
                   <Image src="/card-image-temporal.png" alt="Workshop presenter" fill className="object-cover" />
@@ -56,7 +57,7 @@ export default function Home() {
             <Button
               size="lg"
               onClick={() => document.getElementById('registration-form')?.scrollIntoView({ behavior: 'smooth' })}
-              className="w-full max-w-xl mx-auto bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-8 text-lg font-semibold rounded-full shadow-lg"
+              className="w-full max-w-xl mx-auto bg-primary hover:bg-primary/90 text-primary-foreground px-6 sm:px-12 py-6 sm:py-8 text-base sm:text-lg font-semibold rounded-full shadow-lg"
             >
               Reserve Your Spot Today - free registration
             </Button>
@@ -69,13 +70,13 @@ export default function Home() {
               <Image src="/star.png" alt="" width={200} height={200} className="w-full h-full" />
             </div>
 
-            <div className="bg-card-background backdrop-blur-sm rounded-3xl p-8 shadow-lg h-[535px] flex flex-col justify-center relative">
-              <h2 className="text-4xl font-bold text-primary mb-6">Why this sector needs innovation now.</h2>
-              <div className="space-y-4 text-foreground/80">
-                <p className="text-base leading-relaxed">
+            <div className="bg-card-background backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-lg min-h-[400px] sm:h-[535px] flex flex-col justify-center relative">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4 sm:mb-6">Why this sector needs innovation now.</h2>
+              <div className="space-y-3 sm:space-y-4 text-foreground/80">
+                <p className="text-sm sm:text-base leading-relaxed">
                   Digital transformation is no longer optional for nonprofits and education. It's the key to:
                 </p>
-                <ol className="space-y-4 text-base">
+                <ol className="space-y-3 sm:space-y-4 text-sm sm:text-base">
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary shrink-0">1.</span>
                     <span>Scaling your programs with fewer resources.</span>
@@ -106,30 +107,30 @@ export default function Home() {
       <div className="min-h-60 relative -mt-60 -mb-10" style={{ backgroundImage: 'url(/background-pattern.png)' }}></div>
 
       {/* The 3 Core Components */}
-      <section className="container mx-auto my-25 px-4 py-24 lg:py-24">
-        <div className="grid md:grid-cols-4 gap-4">
-          <div className="my-8">
-            <h2 className="text-5xl lg:text-7xl font-bold text-foreground">
+      <section className="container mx-auto px-4 py-16 sm:py-20 lg:py-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="sm:col-span-2 md:col-span-1 my-4 sm:my-8">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground">
               The 3
             </h2>
-            <p className="text-2xl lg:text-3xl font-bold text-foreground mt-2">Core Components:</p>
+            <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mt-2">Core Components:</p>
           </div>
 
-          <Card className="bg-card-gradient-start text-white p-8 rounded-2xl border-0 shadow-xl">
-            <h3 className="text-2xl font-bold mb-4">People:</h3>
-            <p className="text-white leading-relaxed">
+          <Card className="bg-card-gradient-start text-white p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl border-0 shadow-xl">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">People:</h3>
+            <p className="text-white leading-relaxed text-sm sm:text-base">
               Build a digital mindset and align your team with purpose.
             </p>
           </Card>
 
-          <Card className="bg-card-gradient-mid text-white p-8 rounded-2xl border-0 shadow-xl">
-            <h3 className="text-2xl font-bold mb-4">Process:</h3>
-            <p className="text-white leading-relaxed">Standardize workflows and scale what works.</p>
+          <Card className="bg-card-gradient-mid text-white p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl border-0 shadow-xl">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Process:</h3>
+            <p className="text-white leading-relaxed text-sm sm:text-base">Standardize workflows and scale what works.</p>
           </Card>
 
-          <Card className="bg-card-gradient-end text-white p-8 rounded-2xl border-0 shadow-xl">
-            <h3 className="text-2xl font-bold mb-4">Technology:</h3>
-            <p className="text-white leading-relaxed">
+          <Card className="bg-card-gradient-end text-white p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl border-0 shadow-xl">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Technology:</h3>
+            <p className="text-white leading-relaxed text-sm sm:text-base">
               Adopt tools that serve your community and protect trust.
             </p>
           </Card>
@@ -137,39 +138,39 @@ export default function Home() {
       </section>
 
       {/* Dark Section - What You'll Discover */}
-      <section className="container mx-auto px-4 py-16 lg:py-24">
-        <div className="relative bg-card-ring rounded-[3rem] p-6 lg:p-16 min-h-[400px] lg:min-h-[535px] max-w-[1050px] mx-auto">
+      <section className="container mx-auto px-4 py-12 sm:py-16 lg:py-24">
+        <div className="relative bg-card-ring rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-4 sm:p-6 lg:p-16 min-h-[400px] lg:min-h-[535px] max-w-[1050px] mx-auto">
           {/* 3D Hexagon Decoration */}
           <div className="absolute -left-50 top-2 -translate-y-1/2 w-115 h-115 hidden lg:block z-20">
             <Image src="/ring.png" alt="" width={300} height={300} className="w-full h-full" />
           </div>
 
-          <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-24 items-start lg:items-center">
-            <div className="mb-6 lg:mb-0">
-              <h2 className="text-3xl lg:text-5xl text-white mb-8 lg:mt-30">In this free class you will discover:</h2>
+          <div className="relative z-10 grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-24 items-start lg:items-center">
+            <div className="mb-4 sm:mb-6 lg:mb-0">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl text-white mb-6 sm:mb-8 lg:mt-30">In this free class you will discover:</h2>
             </div>
 
-            <div className="space-y-6 text-gray-300 lg:mt-10">
-              <ul className="space-y-4">
+            <div className="space-y-4 sm:space-y-6 text-gray-300 lg:mt-10">
+              <ul className="space-y-3 sm:space-y-4">
                 <li className="flex gap-3">
                   <span className="text-accent shrink-0">•</span>
-                  <span>Why innovation goes beyond software — and how to apply it to your mission.</span>
+                  <span className="text-sm sm:text-base">Why innovation goes beyond software — and how to apply it to your mission.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-accent shrink-0">•</span>
-                  <span>How to foster innovation with the People, Process, Technology framework.</span>
+                  <span className="text-sm sm:text-base">How to foster innovation with the People, Process, Technology framework.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-accent shrink-0">•</span>
-                  <span>Success cases of organizations scaling their impact.</span>
+                  <span className="text-sm sm:text-base">Success cases of organizations scaling their impact.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-accent shrink-0">•</span>
-                  <span>Practical steps to start your own digital transformation journey.</span>
+                  <span className="text-sm sm:text-base">Practical steps to start your own digital transformation journey.</span>
                 </li>
               </ul>
 
-              <p className="text-accent font-semibold italic pt-4">
+              <p className="text-accent font-semibold italic pt-3 sm:pt-4 text-sm sm:text-base">
                 Bonus: Downloadable template kit to organize your innovation roadmap.
               </p>
             </div>
@@ -178,64 +179,64 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="container mx-auto px-4 py-16 lg:py-40 flex w-[1050px] z-10 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="container mx-auto px-4 py-12 sm:py-16 lg:py-40 z-10 relative max-w-[1050px]">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left - Image and Text */}
           <div className="space-y-4">
-            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl h-[535px]">
+            <div className="relative aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl h-[400px] sm:h-[500px] lg:h-[535px]">
               <Image src="/helmet.png" alt="Innovation technology" fill className="object-cover" />
             </div>
             {/* Separate text box below image */}
-            <div className="bg-card-purple rounded-2xl p-4 text-center text-sm font-semibold text-card-purple-text uppercase tracking-wide w-[400px]">
+            <div className="bg-card-purple rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-card-purple-text uppercase tracking-wide w-full sm:w-[400px] mx-auto ml-0.5">
               At Myneflow, we don't just build tech — <span className="font-black">we deliver results.</span>
             </div>
           </div>
 
           {/* Right - Content */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div>
-              <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">About</p>
-              <div className="flex items-center mb-6">
-                <Image src="/logo.png" alt="" width={50} height={50} className="w-50 h-12 -ml-4" />
+              <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">About</p>
+              <div className="flex items-center mb-4 sm:mb-6">
+                <Image src="/logo.png" alt="" width={50} height={50} className="w-8 h-8 sm:w-12 sm:h-12 -ml-2 sm:-ml-4" />
               </div>
             </div>
 
-            <div className="space-y-6">
-              <p className="text-lg font-semibold text-foreground">
+            <div className="space-y-4 sm:space-y-6">
+              <p className="text-base sm:text-lg font-semibold text-foreground">
                 We've helped education programs, nonprofits, and community-driven organizations:
               </p>
 
-              <ul className="space-y-3 text-foreground/80">
+              <ul className="space-y-2 sm:space-y-3 text-foreground/80">
                 <li className="flex gap-3">
                   <span className="text-primary shrink-0">•</span>
-                  <span>Improve decision-making with real-time data.</span>
+                  <span className="text-sm sm:text-base">Improve decision-making with real-time data.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-primary shrink-0">•</span>
-                  <span>Enhance beneficiary and donor experiences.</span>
+                  <span className="text-sm sm:text-base">Enhance beneficiary and donor experiences.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-primary shrink-0">•</span>
-                  <span>Optimize operations while staying human-centered.</span>
+                  <span className="text-sm sm:text-base">Optimize operations while staying human-centered.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-primary shrink-0">•</span>
-                  <span>
+                  <span className="text-sm sm:text-base">
                     Trusted by innovators across sectors, our team combines strategy, design, and technology to make
                     transformation real.
                   </span>
                 </li>
               </ul>
 
-              <div className="pt-4">
-                <p className="text-primary font-semibold italic mb-6">
+              <div className="pt-3 sm:pt-4">
+                <p className="text-primary font-semibold italic mb-4 sm:mb-6 text-sm sm:text-base">
                   Secure your spot today and take the first step towards innovation. Seats are limited — only 10
                   available.
                 </p>
                 <Button
                   size="lg"
                   onClick={() => document.getElementById('registration-form')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-base font-semibold rounded-full shadow-lg"
+                  className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-base font-semibold rounded-full shadow-lg"
                 >
                   Reserve Your Spot Today - free registration
                 </Button>
@@ -249,20 +250,20 @@ export default function Home() {
       <div className="min-h-60 relative -mt-60 -mb-10" style={{ backgroundImage: 'url(/background-pattern.png)' }}></div>
 
       {/* Purple Banner Section */}
-      <section className="bg-secondary-background py-16 lg:py-20 mt-10">
+      <section className="bg-secondary-background py-12 sm:py-16 lg:py-20 mt-8 sm:mt-10">
         <div className="container mx-auto px-4">
-          <div className="relative bg-primary rounded-3xl p-8 lg:p-16 min-h-[400px] lg:min-h-[500px] mt-20">
+          <div className="relative bg-primary rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-16 min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] mt-12 sm:mt-16 lg:mt-20">
             {/* 3D Star Decoration */}
             <div className="absolute -top-30 -right-12 w-110 h-110 hidden lg:block z-20">
               <Image src="/star.png" alt="" width={320} height={320} className="w-full h-full" />
             </div>
 
             {/* Content */}
-            <div className="relative z-20 grid lg:grid-cols-2 gap-8 items-center min-h-[300px] lg:min-h-[400px]">
+            <div className="relative z-20 grid lg:grid-cols-2 gap-6 sm:gap-8 items-center min-h-[250px] sm:min-h-[300px] lg:min-h-[400px]">
               {/* Left Side - Text */}
-              <div className="space-y-6">
-                <p className="text-lg lg:text-xl font-semibold text-white uppercase tracking-wide -mt-40">FREELIVE WORKSHOP</p>
-                <h2 className="text-2xl lg:text-4xl xl:text-5xl text-white leading-tight">
+              <div className="space-y-4 sm:space-y-6">
+                <p className="text-base sm:text-lg lg:text-xl font-semibold text-white uppercase tracking-wide -mt-20 sm:-mt-32 lg:-mt-40">FREELIVE WORKSHOP</p>
+                <h2 className="text-xl sm:text-2xl lg:text-4xl xl:text-5xl text-white leading-tight">
                   Innovation strategies for nonprofits & education.
                 </h2>
               </div>
@@ -273,13 +274,13 @@ export default function Home() {
           </div>
         </div>
         {/* Registration Form Section */}
-        <section id="registration-form" className="container mx-auto px-4 py-16 lg:py-20 -mt-70 z-10 relative">
-          <div className="bg-white rounded-3xl p-8 lg:p-12 max-w-4xl mx-auto shadow-lg">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-8 text-center">
+        <section id="registration-form" className="container mx-auto px-4 py-12 sm:py-16 lg:py-20 -mt-40 sm:-mt-50 lg:-mt-70 z-10 relative">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-12 max-w-4xl mx-auto shadow-lg">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-6 sm:mb-8 text-center">
               Reserve Your Spot Today
             </h2>
 
-            <form action={`https://formspree.io/${process.env.FORMSPREE_ID}`} method="POST" className="space-y-6">
+            <form action={`https://formspree.io/${process.env.FORMSPREE_ID}`} method="POST" className="space-y-4 sm:space-y-6">
               {/* Full Name */}
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">Full Name</label>
@@ -396,7 +397,7 @@ export default function Home() {
               <div className="pt-6">
                 <Button
                   type="submit"
-                  size="xl"
+                  size="lg"
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-lg font-semibold rounded-full shadow-lg"
                 >
                   Save my spot
