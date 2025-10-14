@@ -383,6 +383,9 @@ export default function Home() {
           </div>
         </section>
       </section>
+
+      {/* Decorative Background Pattern */}
+      <div className="relative -mt-150 h-[600px]" style={{ backgroundImage: 'url(/background-pattern.png)' }}></div>
     </main >
   )
 }
