@@ -4,8 +4,22 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Play } from "lucide-react"
 import Image from "next/image"
+import { useEffect } from "react"
 
 export default function Home() {
+  useEffect(() => {
+    // LinkedIn tracking script
+    const _linkedin_partner_id = "8081586";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+
+    const script1 = document.createElement('script');
+    script1.type = 'text/javascript';
+    script1.async = true;
+    script1.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    document.getElementsByTagName('head')[0].appendChild(script1);
+  }, []);
+
   return (
     <main className="min-h-screen pattern-bg">
       {/* Header */}
@@ -265,13 +279,15 @@ export default function Home() {
               Reserve Your Spot Today
             </h2>
 
-            <form className="space-y-6">
+            <form action={`https://formspree.io/${process.env.FORMSPREE_ID}`} method="POST" className="space-y-6">
               {/* Full Name */}
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">Full Name</label>
                 <input
                   type="text"
+                  name="full_name"
                   placeholder="Example: Maria Gonzalez"
+                  required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                 />
               </div>
@@ -281,7 +297,9 @@ export default function Home() {
                 <label className="block text-sm font-medium text-foreground mb-2">Email Address</label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="We'll send your confirmation and event materials here."
+                  required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                 />
               </div>
@@ -291,6 +309,7 @@ export default function Home() {
                 <label className="block text-sm font-medium text-foreground mb-2">Organization / Company</label>
                 <input
                   type="text"
+                  name="organization"
                   placeholder="Myneflow"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                 />
@@ -299,7 +318,7 @@ export default function Home() {
               {/* Sector */}
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">Sector</label>
-                <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+                <select name="sector" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
                   <option value="">Select the option that best describes you:</option>
                   <option value="nonprofit">Nonprofit</option>
                   <option value="education">Education</option>
@@ -315,7 +334,7 @@ export default function Home() {
               {/* Country / Region */}
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">Country / Region or state</label>
-                <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+                <select name="country" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
                   <option value="">So we can connect you with the right Myneflow team.</option>
                   <option value="us">United States</option>
                   <option value="canada">Canada</option>
@@ -331,6 +350,7 @@ export default function Home() {
                 <label className="block text-sm font-medium text-foreground mb-2">Role / Position</label>
                 <input
                   type="text"
+                  name="role"
                   placeholder="Director / Founder / Manager / Specialist / Other"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                 />
@@ -351,6 +371,8 @@ export default function Home() {
                     <label key={index} className="flex items-center space-x-3 cursor-pointer">
                       <input
                         type="checkbox"
+                        name="solutions"
+                        value={solution}
                         className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary focus:ring-2"
                       />
                       <span className="text-foreground">{solution}</span>
@@ -363,6 +385,7 @@ export default function Home() {
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">Message or Project Goal (optional)</label>
                 <textarea
+                  name="message"
                   placeholder="Tell us what you'd like to achieve or learn."
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none"
@@ -373,10 +396,10 @@ export default function Home() {
               <div className="pt-6">
                 <Button
                   type="submit"
-                  size="lg"
+                  size="xl"
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-lg font-semibold rounded-full shadow-lg"
                 >
-                  Reserve Your Spot Today - free registration
+                  Save my spot
                 </Button>
               </div>
             </form>
@@ -386,6 +409,6 @@ export default function Home() {
 
       {/* Decorative Background Pattern */}
       <div className="relative -mt-150 h-[600px]" style={{ backgroundImage: 'url(/background-pattern.png)' }}></div>
-    </main >
+    </main>
   )
 }

@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   description:
     "Free workshop on digital transformation for nonprofits and education. Learn the People, Process, Technology framework.",
   generator: "v0.app",
+  icons: {
+    icon: '/logo-icon.png',
+    shortcut: '/logo-icon.png',
+    apple: '/logo-icon.png',
+  },
 }
 
 export default function RootLayout({
