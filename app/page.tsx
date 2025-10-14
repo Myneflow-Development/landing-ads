@@ -197,7 +197,7 @@ export default function Home() {
             <div>
               <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">About</p>
               <div className="flex items-center mb-4 sm:mb-6">
-                <Image src="/logo.png" alt="" width={50} height={50} className="w-8 h-8 sm:w-12 sm:h-12 -ml-2 sm:-ml-4" />
+                <Image src="/logo.png" alt="" width={200} height={43} className="w-42 h-auto sm:w-60 sm:h-auto -ml-4" />
               </div>
             </div>
 
