@@ -56,14 +56,14 @@ export default function Home() {
       console.log(result.success);
       if (result.success) {
         setSubmitStatus('success');
-        setSubmitMessage('¡Gracias! Tu registro ha sido exitoso. Te enviaremos la confirmación pronto.');
+        setSubmitMessage('Thank you! Your registration has been successful. We will send you the confirmation soon.');
       } else {
         setSubmitStatus('error');
-        setSubmitMessage(result.error || 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        setSubmitMessage(result.error || 'There was an error sending the form. Please try again.');
       }
     } catch (error) {
       setSubmitStatus('error');
-      setSubmitMessage('Hubo un error de conexión. Por favor, inténtalo de nuevo.');
+      setSubmitMessage('There was an error connecting to the server. Please try again.');
       console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);
