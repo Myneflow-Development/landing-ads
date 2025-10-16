@@ -106,10 +106,8 @@ export async function POST(request: NextRequest) {
                 { status: 500 }
             );
         }
-
-        const result = await response.json();
-        console.log('Brevo API success response:', result);
-        return NextResponse.json({ success: true, message: 'Contact created successfully', data: result });
+        console.log('Brevo API success response:', response);
+        return NextResponse.json({ success: true, message: 'Contact created successfully', data: response });
 
     } catch (error) {
         console.error('Server error:', error);
