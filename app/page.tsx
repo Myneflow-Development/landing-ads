@@ -57,6 +57,17 @@ export default function Home() {
       if (result.success) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your registration has been successful. We will send you the confirmation soon.');
+
+        // Reset form first
+        const form = e.currentTarget as HTMLFormElement;
+        if (form) {
+          form.reset();
+        }
+
+        // Refresh the page after 1 second
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } else {
         setSubmitStatus('error');
         setSubmitMessage(result.error || 'There was an error sending the form. Please try again.');
@@ -67,12 +78,7 @@ export default function Home() {
       console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);
-
-      // Reset form immediately when button is pressed
-      const form = e.currentTarget as HTMLFormElement;
-      if (form) {
-        form.reset();
-      }
+      // No resetear aquí, solo cuando sea exitoso
     }
   };
 
