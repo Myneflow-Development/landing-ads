@@ -4,9 +4,13 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Play } from "lucide-react"
 import Image from "next/image"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export default function Home() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
+
   useEffect(() => {
     // LinkedIn tracking script
     const _linkedin_partner_id = "8081586";
@@ -20,8 +24,59 @@ export default function Home() {
     document.getElementsByTagName('head')[0].appendChild(script1);
   }, []);
 
-  return (
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setSubmitMessage('');
 
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        NOMBRE_COMPLETO: formData.get('full_name') as string,
+        email: formData.get('email') as string,
+        FULL_NAME: formData.get('full_name') as string,
+        ORGANIZACION: formData.get('organization') as string,
+        SECTOR: formData.get('sector') as string,
+        PAIS: formData.get('country') as string,
+        ROLE: formData.get('role') as string,
+        SOLUCIONES: formData.getAll('solutions') as string[],
+        MENSAJE: formData.get('message') as string,
+      };
+      console.log(JSON.stringify(data));
+      const response = await fetch('/api/brevo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log(result.success);
+      if (result.success) {
+        setSubmitStatus('success');
+        setSubmitMessage('¡Gracias! Tu registro ha sido exitoso. Te enviaremos la confirmación pronto.');
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(result.error || 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage('Hubo un error de conexión. Por favor, inténtalo de nuevo.');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+
+      // Reset form immediately when button is pressed
+      const form = e.currentTarget as HTMLFormElement;
+      if (form) {
+        form.reset();
+      }
+    }
+  };
+
+  return (
     <main className="min-h-screen pattern-bg">
       {/* Header */}
       <header className="container mx-auto px-4 py-4 sm:py-6 flex items-center justify-between">
@@ -280,7 +335,7 @@ export default function Home() {
               Reserve Your Spot Today
             </h2>
 
-            <form action={`https://formspree.io/${process.env.FORMSPREE_ID}`} method="POST" className="space-y-4 sm:space-y-6">
+            <form onSubmit={handleFormSubmit} className="space-y-4 sm:space-y-6">
               {/* Full Name */}
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">Full Name</label>
@@ -393,14 +448,28 @@ export default function Home() {
                 />
               </div>
 
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="mb-3 p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="text-green-800 text-sm">{submitMessage}</p>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="mb-3 p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-800 text-sm">{submitMessage}</p>
+                </div>
+              )}
+
               {/* Submit Button */}
               <div className="pt-6">
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-lg font-semibold rounded-full shadow-lg"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-lg font-semibold rounded-full shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Save my spot
+                  {isSubmitting ? 'Enviando...' : 'Save my spot'}
                 </Button>
               </div>
             </form>
