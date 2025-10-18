@@ -4,25 +4,13 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Play } from "lucide-react"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
 
-  useEffect(() => {
-    // LinkedIn tracking script
-    const _linkedin_partner_id = "8081586";
-    (window as any)._linkedin_data_partner_ids = (window as any)._linkedin_data_partner_ids || [];
-    (window as any)._linkedin_data_partner_ids.push(_linkedin_partner_id);
-
-    const script1 = document.createElement('script');
-    script1.type = 'text/javascript';
-    script1.async = true;
-    script1.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
-    document.getElementsByTagName('head')[0].appendChild(script1);
-  }, []);
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
