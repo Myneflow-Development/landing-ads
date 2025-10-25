@@ -43,19 +43,8 @@ export default function Home() {
       const result = await response.json();
       console.log(result.success);
       if (result.success) {
-        setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your registration has been successful. We will send you the confirmation soon.');
-
-        // Reset form first
-        const form = e.currentTarget as HTMLFormElement;
-        if (form) {
-          form.reset();
-        }
-
-        // Refresh the page after 1 second
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        // Redirect to thank you page
+        window.location.href = '/thank-you';
       } else {
         setSubmitStatus('error');
         setSubmitMessage(result.error || 'There was an error sending the form. Please try again.');
