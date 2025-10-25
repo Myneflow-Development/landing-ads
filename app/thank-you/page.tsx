@@ -43,19 +43,6 @@ export default function ThankYou() {
                                 You'll receive a confirmation email.
                             </p>
                         </div>
-
-                        {/* CTA Button */}
-                        <div className="space-y-4">
-                            <Button
-                                size="lg"
-                                asChild
-                                className="w-full max-w-xl mx-auto bg-primary hover:bg-primary/90 text-primary-foreground px-6 sm:px-12 py-6 sm:py-8 text-base sm:text-lg font-semibold rounded-full shadow-lg"
-                            >
-                                <Link href="/">
-                                    Return to Homepage
-                                </Link>
-                            </Button>
-                        </div>
                     </div>
                 </div>
             </section>
